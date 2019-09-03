@@ -7,18 +7,17 @@ import { useEffectOnce } from "react-use";
 function inputChangeHandler(event, callback) {
   return callback(event.target.value);
 }
+
 const useDomInput = ({ elementId, value, onChange }) => {
   const inputRef = useRef(null);
   useEffectOnce(() => {
     inputRef.current = document.getElementById(elementId);
+    inputRef.current.value = value;
+    const callback = e => inputChangeHandler(e, onChange);
 
-    inputRef.current.addEventListener(
-      "keypress",
-      e => inputChangeHandler(e, onChange),
-      false
-    );
+    inputRef.current.addEventListener("keypress", callback, true);
     return () => {
-      console.log("Running clean-up of effect on unmount");
+      inputRef.current.removeEventListener("keypress", callback, true);
     };
   });
 
