@@ -16,7 +16,7 @@ function App() {
   });
   const [textInputRef] = useDomInput({
     elementId: "firstName",
-    value: selectValue,
+    value: textValue,
     handler: setTextValue
   });
 

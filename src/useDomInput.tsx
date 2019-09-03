@@ -1,15 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useEffectOnce } from "react-use";
-
-interface EventTarget {
-  event: {
-    target: { value: string };
-  };
-}
-
-function inputChangeHandler(event: HTMLInputElement, handler: EventListener) {
-  return handler(event.target.value);
-}
+import { eventHandler } from "./eventHandler";
 
 export const useDomInput = (props: {
   elementId: string;
@@ -23,7 +14,7 @@ export const useDomInput = (props: {
   useEffectOnce(() => {
     inputRef.current = document.getElementById(elementId);
     handler(inputRef.current.value);
-    const callback = e => inputChangeHandler(e, handler);
+    const callback = e => eventHandler(e, handler);
     inputRef.current.addEventListener("keypress", callback, true);
     return () => {
       inputRef.current.removeEventListener("keypress", callback, true);
