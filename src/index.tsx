@@ -5,6 +5,7 @@ import { useInterval } from "react-use";
 import { useDomInput } from "./useDomInput";
 import { useDomSelect } from "./useDomSelect";
 import { useDomCheckboxGroup } from "./useDomCheckboxGroup";
+import { useDomRadioGroup } from "./useDomRadioGroup";
 function mapToJson(map) {
   return JSON.stringify([...map]);
 }
@@ -19,6 +20,8 @@ function App() {
   const [checkboxState, setCheckboxState] = useState(
     new Map().set("fruitJuicesOrange", true)
   );
+
+  const [radioValue, setRadioValue] = useState("green");
 
   const [selectFieldRef] = useDomSelect({
     elementId: "size",
@@ -37,9 +40,15 @@ function App() {
     handler: setCheckboxState
   });
 
+  useDomRadioGroup({
+    name: "color",
+    value: radioValue,
+    handler: setRadioValue
+  });
+
   //Change input field state
   useInterval(() => {
-    setTextValue("Change by React State");
+    setTextValue("Reset");
     setSelectValue("smol");
   }, 10000);
 
@@ -49,7 +58,11 @@ function App() {
       <p>{textValue}</p>
       <p>{selectValue}</p>
       <p>{mapToJson(checkboxState)}</p>
-      <p>State is reset to "RESET!" every 10 seconds</p>
+      <p>{radioValue}</p>
+      <p>
+        State for text will reset to "RESET!" every 10 seconds. Select will set
+        to "large"
+      </p>
     </div>
   );
 }
