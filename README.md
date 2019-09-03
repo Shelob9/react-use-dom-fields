@@ -1,8 +1,23 @@
-# Work In progress
+# React User DOM Inpouts
 
-Tracks and controls the state of form fields whose rendering is NOT controlled by React.
+Tracks and controls the state of form fields in native DOM, whose rendering is NOT controlled by React.
 
-### Example
+## Components
+
+- Input fields `useDomInput`
+- Select fields `useDomSelect`
+- Groups of radio fields `useDomRadioGroup`
+- Groups of checkbox fields `useCheckboxGroup`
+
+## WHY??
+
+Legacy code.
+
+In Caldera Forms, we are moving field rendering to React components. This will allow us to move all form state managment to one place -- inside the `CalderaFormsRenderer` component, without forcing all fields to suddenly be React-based.
+
+It could also be used to hydrate an HTML form inside of a React app.
+
+## Example
 
 ```html
 <div id="root"></div>
