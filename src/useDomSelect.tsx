@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import { useEffectOnce } from "react-use";
 import { eventHandler } from "./eventHandler";
 
@@ -8,23 +8,23 @@ export const useDomSelect = (props: {
   handler?: EventListener | undefined;
 }) => {
   const { elementId, value, handler } = props;
-  const inputRef = useRef(null);
+  const selectRef = useRef(null);
 
   //Bind change handler on mount/ unmount
   useEffectOnce(() => {
-    inputRef.current = document.getElementById(elementId);
-    handler(inputRef.current.value);
+    selectRef.current = document.getElementById(elementId);
+    handler(selectRef.current.value);
     const callback = e => eventHandler(e, handler);
-    inputRef.current.addEventListener("change", callback, true);
+    selectRef.current.addEventListener("change", callback, true);
     return () => {
-      inputRef.current.removeEventListener("change", callback, true);
+      selectRef.current.removeEventListener("change", callback, true);
     };
   });
 
   //Bind value of input to React state
   useEffect(() => {
-    inputRef.current.value = value;
-  });
+    selectRef.current.value = value;
+  }, [value]);
 
-  return [inputRef];
+  return [selectRef];
 };

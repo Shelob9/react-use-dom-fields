@@ -24,7 +24,7 @@ export const useDomInput = (props: {
   //Bind value of input to React state
   useEffect(() => {
     inputRef.current.value = value;
-  });
+  }, [value]);
 
   return [inputRef];
 };
