@@ -11,7 +11,6 @@ const useDomInput = ({ elementId, value, onChange }) => {
   const inputRef = useRef(null);
   useEffectOnce(() => {
     inputRef.current = document.getElementById(elementId);
-    console.log(inputRef.current);
 
     inputRef.current.addEventListener(
       "keypress",
