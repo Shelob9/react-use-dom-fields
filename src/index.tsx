@@ -4,50 +4,26 @@ import { useDomEvent } from "framer-motion";
 import "./styles.css";
 import { useEffectOnce } from "react-use";
 import { useInterval } from "react-use";
-
-function inputChangeHandler(event, callback) {
-  return callback(event.target.value);
-}
-
-const useDomInput = ({ elementId, value, onChange }) => {
-  const inputRef = useRef(null);
-
-  //Bind change handler on mount/ unmount
-  useEffectOnce(() => {
-    inputRef.current = document.getElementById(elementId);
-    onChange(inputRef.current.value);
-    const callback = e => inputChangeHandler(e, onChange);
-    inputRef.current.addEventListener("keypress", callback, true);
-    return () => {
-      inputRef.current.removeEventListener("keypress", callback, true);
-    };
-  });
-
-  //Bind value of input to React state
-  useEffect(() => {
-    inputRef.current.value = value;
-  });
-
-  return [inputRef];
-};
+import { useDomInput } from "./useDomInput";
 
 function App() {
   const [textValue, setTextValue] = useState("Default From React");
   const [textInputRef] = useDomInput({
     elementId: "firstName",
     value: textValue,
-    onChange: setTextValue
+    handler: setTextValue
   });
 
   //Change input field state
   useInterval(() => {
     setTextValue("Change by React State");
-  }, 1000);
+  }, 10000);
 
   return (
     <div className="App">
       <h2>React App</h2>
       <p>{textValue}</p>
+      <p>State is reset to "RESET!" every 10 seconds</p>
     </div>
   );
 }
