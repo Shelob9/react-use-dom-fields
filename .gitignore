@@ -1,3 +1,9 @@
+cjs/
+dist/
+esm/
+types/
+.cache/
+
 # Logs
 logs
 *.log

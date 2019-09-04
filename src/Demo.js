@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { render } from 'react-dom';
 import './styles.css';
 import { useInterval } from 'react-use';
 import { useDomInput } from './useDomInput';
@@ -26,18 +25,19 @@ export default function Demo() {
 
   const [radioValue, setRadioValue] = useState('green');
 
-  const [selectFieldRef] = useDomSelect({
+  useDomSelect({
     elementId: 'size',
     value: selectValue,
     handler: setSelectValue,
   });
-  const [textInputRef] = useDomInput({
+
+  useDomInput({
     elementId: 'firstName',
     value: textValue,
     handler: setTextValue,
   });
 
-  const [boxesRef] = useDomCheckboxGroup({
+  useDomCheckboxGroup({
     name: 'fruitJuices',
     value: checkboxState,
     handler: setCheckboxState,
@@ -49,7 +49,7 @@ export default function Demo() {
     handler: setRadioValue,
   });
 
-  //Change input field state
+  // Change input field state
   useInterval(() => {
     setTextValue('Reset');
     setSelectValue('smol');
