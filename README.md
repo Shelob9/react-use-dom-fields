@@ -2,6 +2,9 @@
 
 Tracks and controls the state of form fields in native DOM, whose rendering is NOT controlled by React.
 
+[Edit With CodeSandbox](https://github.com/Shelob9/react-use-dom-fields/tree/master/)
+[Edit With Gitpod](http://gitpod.io#https://github.com/Shelob9/react-use-dom-fields/tree/master/)
+
 ## Components
 
 - Input fields `useDomInput`
@@ -26,6 +29,10 @@ It could also be used to hydrate an HTML form inside of a React app.
 
 ## Example
 
+### Input Field `useDOMInput`
+
+The `useDOMInput` can be used for any type of HTML input. Groups of checkbox and radio inputs have their own components.
+
 ```html
 <div id="root"></div>
 <div id="not-react"><input id="email" type="email" /></div>
@@ -37,12 +44,12 @@ function FormSummary() {
   const [emailFieldRef] = useDomInput({
     elementId: "email",
     value: email,
-    onChange: setEmail
+    handler: setEmail
   });
   return (
     <div className="App">
       <h2>React App</h2>
-      <p>{textValue}</p>
+      <p>Email{email}</p>
     </div>
   );
 }
