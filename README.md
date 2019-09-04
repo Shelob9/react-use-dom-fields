@@ -2,8 +2,8 @@
 
 Tracks and controls the state of form fields in native DOM, whose rendering is NOT controlled by React.
 
-[Edit With CodeSandbox](https://github.com/Shelob9/react-use-dom-fields/tree/master/)
-[Edit With Gitpod](http://gitpod.io#https://github.com/Shelob9/react-use-dom-fields/tree/master/)
+* [Edit With CodeSandbox](https://github.com/Shelob9/react-use-dom-fields/tree/master/)
+* [Edit With Gitpod](http://gitpod.io#https://github.com/Shelob9/react-use-dom-fields/tree/master/)
 
 ## Components
 
