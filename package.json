@@ -15,6 +15,7 @@
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
     "husky": "^3.0.5",
+    "parcel-bundler": "^1.12.3",
     "typescript": "3.3.3"
   },
   "scripts": {
@@ -22,7 +23,8 @@
     "lint": "web-scripts lint",
     "build": "web-scripts build",
     "commit": "web-scripts commit",
-    "release": "web-scripts release"
+    "release": "web-scripts release",
+    "demo": "parcel src/demo/demo.html"
   },
   "husky": {
     "hooks": {
