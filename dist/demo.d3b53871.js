@@ -48195,10 +48195,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function mapToJson(map) {
   return JSON.stringify(_toConsumableArray(map));
 }
-
-function jsonToMap(jsonStr) {
-  return new Map(JSON.parse(jsonStr));
-}
 /**
  * Full demonstration component
  *
