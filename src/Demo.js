@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { useInterval } from 'react-use';
 import { useDomInput } from './useDomInput';
 import { useDomSelect } from './useDomSelect';
 import { useDomCheckboxGroup } from './useDomCheckboxGroup';
@@ -14,6 +13,8 @@ function jsonToMap(jsonStr) {
 
 /**
  * Full demonstration component
+ *
+ * This is used for the cypress tests
  */
 export default function Demo() {
   const { document } = window;
@@ -26,50 +27,44 @@ export default function Demo() {
 
   const [radioValue, setRadioValue] = useState('green');
 
+  const selectId = 'size';
   useDomSelect({
-    elementId: 'size',
+    elementId: selectId,
     value: selectValue,
     handler: setSelectValue,
     document,
   });
 
+  const inputId = 'firstName';
   useDomInput({
-    elementId: 'firstName',
+    elementId: inputId,
     value: textValue,
     handler: setTextValue,
     document,
   });
 
+  const checkboxGroupName = 'fruitJuices';
   useDomCheckboxGroup({
-    name: 'fruitJuices',
+    name: checkboxGroupName,
     value: checkboxState,
     handler: setCheckboxState,
     document,
   });
 
+  const radioGroupName = 'color';
   useDomRadioGroup({
-    name: 'color',
+    name: radioGroupName,
     value: radioValue,
     handler: setRadioValue,
   });
 
-  // Change input field state
-  useInterval(() => {
-    setTextValue('Reset');
-    setSelectValue('smol');
-  }, 10000);
-
   return (
     <div className="App">
       <h2>React App</h2>
-      <p>{textValue}</p>
-      <p>{selectValue}</p>
-      <p>{mapToJson(checkboxState)}</p>
-      <p>{radioValue}</p>
-      <p>
-        State for text will reset to "RESET!" every 10 seconds. Select will set
-        to "large"
-      </p>
+      <p id={`${inputId}-value`}>{textValue}</p>
+      <p id={`${selectId}-value`}>{selectValue}</p>
+      <p id={`${checkboxGroupName}-value`}>{mapToJson(checkboxState)}</p>
+      <p id={`${radioGroupName}-value`}>{radioValue}</p>
     </div>
   );
 }

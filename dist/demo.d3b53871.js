@@ -48166,8 +48166,6 @@ var _react = _interopRequireWildcard(require("react"));
 
 require("./styles.css");
 
-var _reactUse = require("react-use");
-
 var _useDomInput = require("./useDomInput");
 
 var _useDomSelect = require("./useDomSelect");
@@ -48203,6 +48201,8 @@ function jsonToMap(jsonStr) {
 }
 /**
  * Full demonstration component
+ *
+ * This is used for the cypress tests
  */
 
 
@@ -48230,39 +48230,46 @@ function Demo() {
       radioValue = _useState8[0],
       setRadioValue = _useState8[1];
 
+  var selectId = 'size';
   (0, _useDomSelect.useDomSelect)({
-    elementId: 'size',
+    elementId: selectId,
     value: selectValue,
     handler: setSelectValue,
     document: document
   });
+  var inputId = 'firstName';
   (0, _useDomInput.useDomInput)({
-    elementId: 'firstName',
+    elementId: inputId,
     value: textValue,
     handler: setTextValue,
     document: document
   });
+  var checkboxGroupName = 'fruitJuices';
   (0, _useDomCheckboxGroup.useDomCheckboxGroup)({
-    name: 'fruitJuices',
+    name: checkboxGroupName,
     value: checkboxState,
     handler: setCheckboxState,
     document: document
   });
+  var radioGroupName = 'color';
   (0, _useDomRadioGroup.useDomRadioGroup)({
-    name: 'color',
+    name: radioGroupName,
     value: radioValue,
     handler: setRadioValue
-  }); // Change input field state
-
-  (0, _reactUse.useInterval)(function () {
-    setTextValue('Reset');
-    setSelectValue('smol');
-  }, 10000);
+  });
   return _react.default.createElement("div", {
     className: "App"
-  }, _react.default.createElement("h2", null, "React App"), _react.default.createElement("p", null, textValue), _react.default.createElement("p", null, selectValue), _react.default.createElement("p", null, mapToJson(checkboxState)), _react.default.createElement("p", null, radioValue), _react.default.createElement("p", null, "State for text will reset to \"RESET!\" every 10 seconds. Select will set to \"large\""));
+  }, _react.default.createElement("h2", null, "React App"), _react.default.createElement("p", {
+    id: "".concat(inputId, "-value")
+  }, textValue), _react.default.createElement("p", {
+    id: "".concat(selectId, "-value")
+  }, selectValue), _react.default.createElement("p", {
+    id: "".concat(checkboxGroupName, "-value")
+  }, mapToJson(checkboxState)), _react.default.createElement("p", {
+    id: "".concat(radioGroupName, "-value")
+  }, radioValue));
 }
-},{"react":"../../node_modules/react/index.js","./styles.css":"../styles.css","react-use":"../../node_modules/react-use/esm/index.js","./useDomInput":"../useDomInput.jsx","./useDomSelect":"../useDomSelect.tsx","./useDomCheckboxGroup":"../useDomCheckboxGroup.tsx","./useDomRadioGroup":"../useDomRadioGroup.ts"}],"demo.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","./styles.css":"../styles.css","./useDomInput":"../useDomInput.jsx","./useDomSelect":"../useDomSelect.tsx","./useDomCheckboxGroup":"../useDomCheckboxGroup.tsx","./useDomRadioGroup":"../useDomRadioGroup.ts"}],"demo.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
