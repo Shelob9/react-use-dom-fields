@@ -1,17 +1,21 @@
-describe('useDomCheckboxGroup component', function() {
+describe('useDomCheckbox component', function() {
   const checkboxGroupName = 'fruitJuices';
+  const appleBox = 'fruitJuicesApple';
+  const orangeBox = 'fruitJuicesOrange';
 
   it('It sets default from DOM', function() {
     cy.goToDemo()
-      .get(`#${checkboxGroupName}`)
-      .should('have.value', 'Apple')
-      .get(`#${checkboxGroupName}`)
+      .get(`#${appleBox}`)
+      .should('be.checked')
+      .get(`#${orangeBox}`)
+      .should('not.be.checked')
+      .get(`#${checkboxGroupName}-value`)
       .contains('fruitJuicesApple');
   });
 
   it('Allows checkbox to update naturally', function() {
     cy.goToDemo()
-      .get(`#frustJuicesOrange`)
+      .get(`#${orangeBox}`)
       .check()
       .should('be:checked');
   });
@@ -19,10 +23,10 @@ describe('useDomCheckboxGroup component', function() {
   it('Updates React state', function() {
     cy.goToDemo();
     cy.goToDemo()
-      .get(`#frustJuicesApple`)
+      .get(`#${orangeBox}`)
       .check()
       .get(`#${checkboxGroupName}-value`)
-      .contains('frustJuicesApple')
-      .contains('frustJuicesOrange');
+      .contains('fruitJuicesApple')
+      .contains('fruitJuicesOrange');
   });
 });

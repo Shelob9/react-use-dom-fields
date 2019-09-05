@@ -24,11 +24,7 @@ export default function Demo() {
   const { document } = window;
   const [textValue, setTextValue] = useState('Default From React');
   const [selectValue, setSelectValue] = useState('large');
-
-  const [checkboxState, setCheckboxState] = useState(
-    new Map().set('fruitJuicesOrange', true),
-  );
-
+  const [checkboxState, setCheckboxState] = useState(['fruitJuicesOrange']);
   const [radioValue, setRadioValue] = useState('green');
 
   const selectId = 'size';

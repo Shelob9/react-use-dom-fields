@@ -48130,15 +48130,13 @@ exports.useDomCheckboxGroup = function (props) {
       handler = props.handler;
   var ref = react_1.useRef(null);
   var setValues = react_1.useCallback(function (ref) {
-    var update = new Map(value);
+    var update = [];
     ref.current.forEach(function (checkbox) {
-      if (value.get(checkbox.id)) {
-        update.set(checkbox.id, true);
-      } else {
-        update.set(checkbox.id, false);
+      if (checkbox.checked) {
+        update.push(checkbox.id);
       }
     });
-    handler(update);
+    console.log(update);
   }, [handler, value]); //Bind change handler on mount/ unmount
 
   react_use_1.useEffectOnce(function () {
@@ -48147,20 +48145,7 @@ exports.useDomCheckboxGroup = function (props) {
     if (ref.current.length) {
       setValues(ref);
       ref.current.forEach(function (checkbox) {
-        var callback = function callback(e) {
-          var update = new Map(value);
-          var id = e.target.id;
-
-          if (isChecked(id)) {
-            update.set(id, true);
-          } else {
-            update.set(id, false);
-          }
-
-          handler(update);
-        };
-
-        checkbox.addEventListener("change", callback, true);
+        checkbox.addEventListener('change', setValues, true);
       });
     }
   });
@@ -48284,7 +48269,7 @@ function Demo() {
       selectValue = _useState4[0],
       setSelectValue = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(new Map().set('fruitJuicesOrange', true)),
+  var _useState5 = (0, _react.useState)(['fruitJuicesOrange']),
       _useState6 = _slicedToArray(_useState5, 2),
       checkboxState = _useState6[0],
       setCheckboxState = _useState6[1];

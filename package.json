@@ -31,7 +31,7 @@
     "build": "web-scripts build",
     "commit": "web-scripts commit",
     "release": "web-scripts release",
-    "demo": "parcel src/demo/demo.html",
+    "demo": "NODE_ENV=development parcel src/demo/demo.html",
     "e2e:open": "cypress open"
   },
   "husky": {

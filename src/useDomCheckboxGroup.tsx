@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import { useEffectOnce } from "react-use";
-import { eventHandler } from "./eventHandler";
+import React, { useRef, useEffect, useCallback } from 'react';
+import { useEffectOnce } from 'react-use';
+import { eventHandler } from './eventHandler';
 
 function getFieldLabel(idAttr: string) {
   return document.querySelectorAll(`[for="${idAttr}"]`)[0].innerHTML;
@@ -12,25 +12,22 @@ function isChecked(idAttr: string) {
 
 export const useDomCheckboxGroup = (props: {
   name: string;
-  value: Map<string, boolean>;
-  handler: Map<string, boolean>;
+  value: Array<string>;
+  handler: Array<string>;
 }) => {
   const { name, value, handler } = props;
   const ref = useRef(null);
   const setValues = useCallback(
     ref => {
-      const update = new Map(value);
+      const update = [];
       ref.current.forEach(checkbox => {
-        if (value.get(checkbox.id)) {
-          update.set(checkbox.id, true);
-        } else {
-          update.set(checkbox.id, false);
+        if (checkbox.checked) {
+          update.push(checkbox.id);
         }
       });
-
-      handler(update);
+      console.log(update);
     },
-    [handler, value]
+    [handler, value],
   );
   //Bind change handler on mount/ unmount
   useEffectOnce(() => {
@@ -38,17 +35,7 @@ export const useDomCheckboxGroup = (props: {
     if (ref.current.length) {
       setValues(ref);
       ref.current.forEach(checkbox => {
-        const callback = e => {
-          const update = new Map(value);
-          const id = e.target.id;
-          if (isChecked(id)) {
-            update.set(id, true);
-          } else {
-            update.set(id, false);
-          }
-          handler(update);
-        };
-        checkbox.addEventListener("change", callback, true);
+        checkbox.addEventListener('change', setValues, true);
       });
     }
   });
