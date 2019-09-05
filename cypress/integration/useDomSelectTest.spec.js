@@ -4,7 +4,9 @@ describe('useDomSelect component', function() {
   it('It sets default from DOM', function() {
     cy.goToDemo()
       .get(`#${selectId}`)
-      .should('have.value', 'small');
+      .should('have.value', 'small')
+      .get(`#${selectId}-value`)
+      .contains('small');
   });
 
   it('Allows select to update naturally', function() {

@@ -5,7 +5,14 @@ import { useDomSelect } from './useDomSelect';
 import { useDomCheckboxGroup } from './useDomCheckboxGroup';
 import { useDomRadioGroup } from './useDomRadioGroup';
 function mapToJson(map) {
-  return JSON.stringify([...map]);
+  const values = [];
+  map.forEach((value, key) => {
+    if (value) {
+      values.push(key);
+    }
+  });
+
+  return values.toString();
 }
 
 /**
