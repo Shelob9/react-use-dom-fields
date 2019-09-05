@@ -1,12 +1,14 @@
-interface TheEvent extends EventTarget {
+interface EventTarget {
+  value: any;
+}
+
+interface EventTargetAny {
   target: EventTarget;
 }
 
 export const eventHandler = (
-  event: {
-    target: { value: string };
-  },
-  handler: EventListener
+  event: EventTargetAny,
+  handler: (value: string) => void,
 ) => {
   return handler(event.target.value);
 };
