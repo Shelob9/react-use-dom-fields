@@ -16,7 +16,7 @@ function mapToJson(map) {
 export default function Demo() {
   const { document } = window;
   const [textValue, setTextValue] = useState('Default From React');
-  const [selectValue, setSelectValue] = useState('smol');
+  const [selectValue, setSelectValue] = useState('large');
 
   const [checkboxState, setCheckboxState] = useState(
     new Map().set('fruitJuicesOrange', true),

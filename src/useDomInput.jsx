@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useEffectOnce } from 'react-use';
 import { eventHandler } from './eventHandler';
 import { Exception } from 'handlebars';
+import { debounce } from 'debounce';
 
 export const useDomInput = ({ elementId, value, handler, document }) => {
   const inputRef = useRef(null);
@@ -12,13 +13,14 @@ export const useDomInput = ({ elementId, value, handler, document }) => {
     if (null === inputRef.current) {
       throw new Exception(`Input with ID attribute ${elementId} not found`);
     }
-    if (inputRef.current && inputRef.current.hasOwnProperty('value')) {
-      handler(inputRef.current.value);
-    }
-    const callback = e => {
+    handler(inputRef.current.value);
+
+    const callback = debounce(e => {
       eventHandler(e, handler);
-    };
+    }, 200);
+
     inputRef.current.addEventListener('keypress', callback, true);
+
     return () => {
       inputRef.current.removeEventListener('keypress', callback, true);
     };

@@ -47943,7 +47943,79 @@ if (typeof require !== 'undefined' && require.extensions) {
   require.extensions['.handlebars'] = extension;
   require.extensions['.hbs'] = extension;
 }
-},{"../dist/cjs/handlebars":"../../node_modules/handlebars/dist/cjs/handlebars.js","../dist/cjs/handlebars/compiler/printer":"../../node_modules/handlebars/dist/cjs/handlebars/compiler/printer.js","fs":"../../node_modules/parcel-bundler/src/builtins/_empty.js"}],"../useDomInput.jsx":[function(require,module,exports) {
+},{"../dist/cjs/handlebars":"../../node_modules/handlebars/dist/cjs/handlebars.js","../dist/cjs/handlebars/compiler/printer":"../../node_modules/handlebars/dist/cjs/handlebars/compiler/printer.js","fs":"../../node_modules/parcel-bundler/src/builtins/_empty.js"}],"../../node_modules/debounce/index.js":[function(require,module,exports) {
+/**
+ * Returns a function, that, as long as it continues to be invoked, will not
+ * be triggered. The function will be called after it stops being called for
+ * N milliseconds. If `immediate` is passed, trigger the function on the
+ * leading edge, instead of the trailing. The function also has a property 'clear' 
+ * that is a function which will clear the timer to prevent previously scheduled executions. 
+ *
+ * @source underscore.js
+ * @see http://unscriptable.com/2009/03/20/debouncing-javascript-methods/
+ * @param {Function} function to wrap
+ * @param {Number} timeout in ms (`100`)
+ * @param {Boolean} whether to execute at the beginning (`false`)
+ * @api public
+ */
+function debounce(func, wait, immediate){
+  var timeout, args, context, timestamp, result;
+  if (null == wait) wait = 100;
+
+  function later() {
+    var last = Date.now() - timestamp;
+
+    if (last < wait && last >= 0) {
+      timeout = setTimeout(later, wait - last);
+    } else {
+      timeout = null;
+      if (!immediate) {
+        result = func.apply(context, args);
+        context = args = null;
+      }
+    }
+  };
+
+  var debounced = function(){
+    context = this;
+    args = arguments;
+    timestamp = Date.now();
+    var callNow = immediate && !timeout;
+    if (!timeout) timeout = setTimeout(later, wait);
+    if (callNow) {
+      result = func.apply(context, args);
+      context = args = null;
+    }
+
+    return result;
+  };
+
+  debounced.clear = function() {
+    if (timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+  
+  debounced.flush = function() {
+    if (timeout) {
+      result = func.apply(context, args);
+      context = args = null;
+      
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+
+  return debounced;
+};
+
+// Adds compatibility for ES modules
+debounce.debounce = debounce;
+
+module.exports = debounce;
+
+},{}],"../useDomInput.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -47959,6 +48031,8 @@ var _eventHandler = require("./eventHandler");
 
 var _handlebars = require("handlebars");
 
+var _debounce = require("debounce");
+
 var useDomInput = function useDomInput(_ref) {
   var elementId = _ref.elementId,
       value = _ref.value,
@@ -47973,14 +48047,10 @@ var useDomInput = function useDomInput(_ref) {
       throw new _handlebars.Exception("Input with ID attribute ".concat(elementId, " not found"));
     }
 
-    if (inputRef.current && inputRef.current.hasOwnProperty('value')) {
-      handler(inputRef.current.value);
-    }
-
-    var callback = function callback(e) {
+    handler(inputRef.current.value);
+    var callback = (0, _debounce.debounce)(function (e) {
       (0, _eventHandler.eventHandler)(e, handler);
-    };
-
+    }, 200);
     inputRef.current.addEventListener('keypress', callback, true);
     return function () {
       inputRef.current.removeEventListener('keypress', callback, true);
@@ -47997,7 +48067,7 @@ exports.useDomInput = useDomInput;
 useDomInput.defaultProps = {
   document: window.document
 };
-},{"react":"../../node_modules/react/index.js","react-use":"../../node_modules/react-use/esm/index.js","./eventHandler":"../eventHandler.ts","handlebars":"../../node_modules/handlebars/lib/index.js"}],"../useDomSelect.tsx":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","react-use":"../../node_modules/react-use/esm/index.js","./eventHandler":"../eventHandler.ts","handlebars":"../../node_modules/handlebars/lib/index.js","debounce":"../../node_modules/debounce/index.js"}],"../useDomSelect.tsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -48211,7 +48281,7 @@ function Demo() {
       textValue = _useState2[0],
       setTextValue = _useState2[1];
 
-  var _useState3 = (0, _react.useState)('smol'),
+  var _useState3 = (0, _react.useState)('large'),
       _useState4 = _slicedToArray(_useState3, 2),
       selectValue = _useState4[0],
       setSelectValue = _useState4[1];

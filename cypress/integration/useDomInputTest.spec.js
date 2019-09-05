@@ -1,10 +1,11 @@
 describe('useDomInput component', function() {
-  it('Sets default from React', () =>
-    function() {
-      cy.goToDemo()
-        .get('#firstName')
-        .should('have.value', 'Default From React');
-    });
+  it('Sets default from DOM', () => {
+    cy.goToDemo()
+      .get('#firstName')
+      .should('have.value', 'Default From DOM')
+      .get('#firstName-value')
+      .contains('Default From DOM');
+  });
 
   it('empties input', () => {
     cy.goToDemo()
@@ -18,6 +19,7 @@ describe('useDomInput component', function() {
       .clear()
       .get('#firstName')
       .type('Green Skull')
+      .wait(200)
       .should('have.value', 'Green Skull');
   });
 

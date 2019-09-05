@@ -1,23 +1,24 @@
 describe('useDomSelect component', function() {
   const selectId = 'size';
 
-  it('It sets default with react', function() {
+  it('It sets default from DOM', function() {
     cy.goToDemo()
       .get(`#${selectId}`)
-      .should('have.value', 'large');
+      .should('have.value', 'small');
   });
+
   it('Allows select to update naturally', function() {
     cy.goToDemo()
       .get(`#${selectId}`)
-      .select('smol')
-      .should('have.value', 'smol');
+      .select('large')
+      .should('have.value', 'large');
   });
 
   it('Updates React state', function() {
     cy.goToDemo()
       .get(`#${selectId}`)
-      .select('smol')
+      .select('large')
       .get(`#${selectId}-value`)
-      .contains('smol');
+      .contains('large');
   });
 });
