@@ -55,5 +55,10 @@ function FormSummary() {
 }
 ```
 ## Development
-
-* 
+* Run unit tests
+  * `yarn test` # Test all once
+  * `yarn test --watch -o` #Watch changes
+* Run e2e tests once for CI
+  * `yarn test:e2e` 
+* Start [Cypress](https://cypress.io) test runner.
+  * `yarn e2e:start`

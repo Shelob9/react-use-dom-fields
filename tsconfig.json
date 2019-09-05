@@ -1,5 +1,7 @@
 {
-  "extends": "@spotify/web-scripts/config/tsconfig.json",
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "src/demo/**/*"]
+  "include": ["./src/*"],
+  "compilerOptions": {
+    "lib": ["dom", "es2015"],
+    "jsx": "react"
+  }
 }

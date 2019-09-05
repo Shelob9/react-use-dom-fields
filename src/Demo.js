@@ -16,6 +16,7 @@ function jsonToMap(jsonStr) {
  * Full demonstration component
  */
 export default function Demo() {
+  const { document } = window;
   const [textValue, setTextValue] = useState('Default From React');
   const [selectValue, setSelectValue] = useState('smol');
 
@@ -29,18 +30,21 @@ export default function Demo() {
     elementId: 'size',
     value: selectValue,
     handler: setSelectValue,
+    document,
   });
 
   useDomInput({
     elementId: 'firstName',
     value: textValue,
     handler: setTextValue,
+    document,
   });
 
   useDomCheckboxGroup({
     name: 'fruitJuices',
     value: checkboxState,
     handler: setCheckboxState,
+    document,
   });
 
   useDomRadioGroup({

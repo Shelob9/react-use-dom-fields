@@ -5,7 +5,9 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "@testing-library/react": "^9.1.4",
     "framer-motion": "1.6.7",
+    "jsdom": "^15.1.1",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-use": "12.2.0"
@@ -16,9 +18,11 @@
     "@testing-library/jest-dom": "^4.1.0",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "cypress": "^3.4.1",
     "husky": "^3.0.5",
     "parcel-bundler": "^1.12.3",
-    "typescript": "3.6.2"
+    "typescript": "3.6.2",
+    "window": "^4.2.6"
   },
   "scripts": {
     "test": "web-scripts test",
@@ -26,7 +30,8 @@
     "build": "web-scripts build",
     "commit": "web-scripts commit",
     "release": "web-scripts release",
-    "demo": "parcel src/demo/demo.html"
+    "demo": "parcel src/demo/demo.html",
+    "e2e:open": "cypress open"
   },
   "husky": {
     "hooks": {
