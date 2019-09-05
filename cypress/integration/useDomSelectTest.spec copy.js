@@ -1,10 +1,6 @@
 describe('useDomSelect component', function() {
   const selectId = 'size';
 
-  it('Loads correctly', function() {
-    cy.goToDemo().contains('React App');
-  });
-
   it('It sets default with react', function() {
     cy.goToDemo()
       .get(`#${selectId}`)

@@ -1,8 +1,4 @@
 describe('useDomInput component', function() {
-  it('Loads correctly', function() {
-    cy.goToDemo().contains('React App');
-  });
-
   it('Sets default from React', () =>
     function() {
       cy.goToDemo()
@@ -10,6 +6,12 @@ describe('useDomInput component', function() {
         .should('have.value', 'Default From React');
     });
 
+  it('empties input', () => {
+    cy.goToDemo()
+      .get('#firstName')
+      .clear()
+      .should('have.value', '');
+  });
   it('Allows input to update naturally', function() {
     cy.goToDemo()
       .get('#firstName')
