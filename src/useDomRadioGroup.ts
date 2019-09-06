@@ -2,13 +2,6 @@ import React, { useRef, useEffect, useCallback } from "react";
 import { useEffectOnce } from "react-use";
 import { eventHandler } from "./eventHandler";
 
-function getFieldLabel(idAttr: string) {
-  return document.querySelectorAll(`[for="${idAttr}"]`)[0].innerHTML;
-}
-
-function isChecked(idAttr: string) {
-  return document.getElementById(idAttr).checked;
-}
 
 export const useDomRadioGroup = (props: {
   name: string;

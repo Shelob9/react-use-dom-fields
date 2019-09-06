@@ -30,13 +30,23 @@ describe('useDomRadioGroup component', function() {
   });
 
   it('Updates React state', function() {
-    cy.goToDemo();
     cy.goToDemo()
-      .get(`#${yellow}`)
+      .get(`#${green}`)
+      .should('be.checked')
+      .contains('green')
+      .should('not.contain', 'yellow')
+      .should('not.contain', 'red');
+  });
+
+  it('Updates from React state', function() {
+    cy.goToDemo()
+      .get('#toggle-hide')
       .check()
+      .get(`#${green}`)
+      .should('be.checked')
       .get(`#${radioGroupName}-value`)
-      .contains('yellow')
-      .should('not.contain', 'green')
+      .contains('green')
+      .should('not.contain', 'yellow')
       .should('not.contain', 'red');
   });
 });

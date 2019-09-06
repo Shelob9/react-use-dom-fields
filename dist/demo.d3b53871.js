@@ -48165,14 +48165,6 @@ var react_1 = require("react");
 
 var react_use_1 = require("react-use");
 
-function getFieldLabel(idAttr) {
-  return document.querySelectorAll("[for=\"" + idAttr + "\"]")[0].innerHTML;
-}
-
-function isChecked(idAttr) {
-  return document.getElementById(idAttr).checked;
-}
-
 exports.useDomRadioGroup = function (props) {
   var name = props.name,
       value = props.value,
@@ -48232,6 +48224,8 @@ var _useDomCheckboxGroup = require("./useDomCheckboxGroup");
 
 var _useDomRadioGroup = require("./useDomRadioGroup");
 
+var _reactUse = require("react-use");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -48242,24 +48236,11 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function mapToJson(map) {
-  console.log(8, map);
-  var values = [];
-  map.forEach(function (value, key) {
-    if (value) {
-      values.push(key);
-    }
-  });
-  console.log(15, values);
-  return values.toString();
-}
 /**
  * Full demonstration component
  *
  * This is used for the cypress tests
  */
-
-
 function Demo() {
   var _window = window,
       document = _window.document;
@@ -48283,6 +48264,11 @@ function Demo() {
       _useState8 = _slicedToArray(_useState7, 2),
       radioValue = _useState8[0],
       setRadioValue = _useState8[1];
+
+  var _useToggle = (0, _reactUse.useToggle)(false),
+      _useToggle2 = _slicedToArray(_useToggle, 2),
+      shouldSendStateUpdate = _useToggle2[0],
+      setShouldSendStateUpdate = _useToggle2[1];
 
   var selectId = 'size';
   (0, _useDomSelect.useDomSelect)({
@@ -48311,9 +48297,27 @@ function Demo() {
     value: radioValue,
     handler: setRadioValue
   });
+  (0, _react.useEffect)(function () {
+    if (true === shouldSendStateUpdate) {
+      setShouldSendStateUpdate(false);
+      setTextValue('Text Reset');
+      setSelectValue('large');
+      setCheckboxState(['fruitJuicesGrape', 'fruitJuicesOrange']);
+      setRadioValue('green');
+    }
+  }, [shouldSendStateUpdate, setShouldSendStateUpdate]);
   return _react.default.createElement("div", {
     className: "App"
-  }, _react.default.createElement("h2", null, "React App"), _react.default.createElement("p", {
+  }, _react.default.createElement("h2", null, "React App"), _react.default.createElement("div", null, _react.default.createElement("label", {
+    for: "toggle-hide"
+  }, "Reset Field State"), _react.default.createElement("input", {
+    type: "radio",
+    id: "toggle-hide",
+    checked: shouldSendStateUpdate,
+    onChange: function onChange() {
+      return setShouldSendStateUpdate(true);
+    }
+  })), _react.default.createElement("p", {
     id: "".concat(inputId, "-value")
   }, textValue), _react.default.createElement("p", {
     id: "".concat(selectId, "-value")
@@ -48323,7 +48327,7 @@ function Demo() {
     id: "".concat(checkboxGroupName, "-value")
   }, checkboxState.join(' | ')));
 }
-},{"react":"../../node_modules/react/index.js","./styles.css":"../styles.css","./useDomInput":"../useDomInput.jsx","./useDomSelect":"../useDomSelect.tsx","./useDomCheckboxGroup":"../useDomCheckboxGroup.tsx","./useDomRadioGroup":"../useDomRadioGroup.ts"}],"demo.js":[function(require,module,exports) {
+},{"react":"../../node_modules/react/index.js","./styles.css":"../styles.css","./useDomInput":"../useDomInput.jsx","./useDomSelect":"../useDomSelect.tsx","./useDomCheckboxGroup":"../useDomCheckboxGroup.tsx","./useDomRadioGroup":"../useDomRadioGroup.ts","react-use":"../../node_modules/react-use/esm/index.js"}],"demo.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));

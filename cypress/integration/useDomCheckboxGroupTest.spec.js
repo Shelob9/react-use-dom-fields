@@ -60,4 +60,14 @@ describe('useDomCheckbox component', function() {
       .should('not.contain', 'fruitJuicesApple')
       .should('not.contain', 'fruitJuicesOrange');
   });
+
+  it('Can update from React state ', () => {
+    cy.goToDemo()
+      .get('#toggle-hide')
+      .check()
+      .get(`#${checkboxGroupName}-value`)
+      .should('contain', 'fruitJuicesGrape')
+      .should('not.contain', 'fruitJuicesApple')
+      .should('contain', 'fruitJuicesOrange');
+  });
 });

@@ -1,20 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useDomInput } from './useDomInput';
 import { useDomSelect } from './useDomSelect';
 import { useDomCheckboxGroup } from './useDomCheckboxGroup';
 import { useDomRadioGroup } from './useDomRadioGroup';
-function mapToJson(map) {
-  console.log(8, map);
-  const values = [];
-  map.forEach((value, key) => {
-    if (value) {
-      values.push(key);
-    }
-  });
-  console.log(15, values);
-  return values.toString();
-}
+import { useToggle } from 'react-use';
 
 /**
  * Full demonstration component
@@ -28,6 +18,7 @@ export default function Demo() {
   const [checkboxState, setCheckboxState] = useState(['fruitJuicesOrange']);
   const [radioValue, setRadioValue] = useState('green');
 
+  const [shouldSendStateUpdate, setShouldSendStateUpdate] = useToggle(false);
   const selectId = 'size';
   useDomSelect({
     elementId: selectId,
@@ -59,9 +50,28 @@ export default function Demo() {
     handler: setRadioValue,
   });
 
+  useEffect(() => {
+    if (true === shouldSendStateUpdate) {
+      setShouldSendStateUpdate(false);
+      setTextValue('Text Reset');
+      setSelectValue('large');
+      setCheckboxState(['fruitJuicesGrape', 'fruitJuicesOrange']);
+      setRadioValue('green');
+    }
+  }, [shouldSendStateUpdate, setShouldSendStateUpdate]);
+
   return (
     <div className="App">
       <h2>React App</h2>
+      <div>
+        <label for="toggle-hide">Reset Field State</label>
+        <input
+          type="radio"
+          id="toggle-hide"
+          checked={shouldSendStateUpdate}
+          onChange={() => setShouldSendStateUpdate(true)}
+        />
+      </div>
       <p id={`${inputId}-value`}>{textValue}</p>
       <p id={`${selectId}-value`}>{selectValue}</p>
       <p id={`${radioGroupName}-value`}>{radioValue}</p>

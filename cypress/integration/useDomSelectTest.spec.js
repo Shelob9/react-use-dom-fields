@@ -23,4 +23,16 @@ describe('useDomSelect component', function() {
       .get(`#${selectId}-value`)
       .contains('large');
   });
+
+  it('Can be updated by React state', () => {
+    cy.goToDemo()
+      .get(`#${selectId}`)
+      .select('small')
+      .get('#toggle-hide')
+      .check()
+      .get(`#${selectId}`)
+      .should('have.value', 'large')
+      .get(`#${selectId}-value`)
+      .contains('large');
+  });
 });

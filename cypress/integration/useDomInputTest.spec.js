@@ -33,4 +33,20 @@ describe('useDomInput component', function() {
       .get('#firstName-value')
       .contains('Green Skull');
   });
+  //  //toggle-hide
+
+  it('Can be updated by react state React state', function() {
+    cy.goToDemo()
+      .get('#toggle-hide')
+      .check()
+      .get('#firstName')
+      //Has updated state?
+      .should('have.value', 'Text Reset')
+
+      //Can we update state from DOM still?
+      .clear()
+      .type('Crystal Skull')
+      .get('#firstName-value')
+      .contains('Crystal Skull');
+  });
 });
