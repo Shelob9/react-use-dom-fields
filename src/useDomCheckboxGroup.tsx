@@ -9,9 +9,9 @@ export const useDomCheckboxGroup = (props: {
   const { name, value, handler } = props;
   const ref = useRef(null);
   const setValues = useCallback(
-    ref => {
+    currentRef => {
       const update: Array<string> = [];
-      ref.current.forEach(checkbox => {
+      currentRef.current.forEach(checkbox => {
         if (checkbox.checked) {
           update.push(checkbox.id);
         }

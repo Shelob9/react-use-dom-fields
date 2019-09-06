@@ -2,7 +2,8 @@ cjs/
 esm/
 types/
 .cache/
-
+dist/
+dist/*
 
 # Logs
 logs

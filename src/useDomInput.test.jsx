@@ -1,15 +1,8 @@
-import {
-  getByLabelText,
-  getByText,
-  getByTestId,
-  queryByTestId,
-  wait,
-  fireEvent,
-} from '@testing-library/dom';
+import { getByLabelText, fireEvent } from '@testing-library/dom';
 import '@testing-library/jest-dom/extend-expect';
 import { render, cleanup } from '@testing-library/react';
 
-import React, { createElement } from 'react';
+import { createElement } from 'react';
 
 import { useDomInput } from './useDomInput';
 const Window = require('window');
@@ -51,12 +44,11 @@ describe('useDomInput', () => {
       document: window.document,
     };
 
-    const { appContainer } = render(createElement(InputTest, props));
+    render(createElement(InputTest, props));
     fireEvent.change(getByLabelText(div, 'TestInput'), {
       target: { value: 'Lunch' },
     });
     expect(getByLabelText(div, 'TestInput').value).toBe('Lunch');
-    // expect(getByTestId(appContainer, `${inputId}-value`)).toContain('Lunch');
     expect(onChange).toBeCalledTimes(1);
   });
 });

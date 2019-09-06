@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import { useEffectOnce } from "react-use";
-import { eventHandler } from "./eventHandler";
+import { useRef, useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
+import { eventHandler } from './eventHandler';
 
 export const useDomSelect = (props: {
   elementId: string;
@@ -15,9 +15,9 @@ export const useDomSelect = (props: {
     selectRef.current = document.getElementById(elementId);
     handler(selectRef.current.value);
     const callback = e => eventHandler(e, handler);
-    selectRef.current.addEventListener("change", callback, true);
+    selectRef.current.addEventListener('change', callback, true);
     return () => {
-      selectRef.current.removeEventListener("change", callback, true);
+      selectRef.current.removeEventListener('change', callback, true);
     };
   });
 

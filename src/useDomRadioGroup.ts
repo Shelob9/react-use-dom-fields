@@ -1,7 +1,5 @@
-import React, { useRef, useEffect, useCallback } from "react";
-import { useEffectOnce } from "react-use";
-import { eventHandler } from "./eventHandler";
-
+import { useRef, useEffect } from 'react';
+import { useEffectOnce } from 'react-use';
 
 export const useDomRadioGroup = (props: {
   name: string;
@@ -16,16 +14,16 @@ export const useDomRadioGroup = (props: {
     if (ref.current.length) {
       ref.current.forEach(radio => {
         callbacks[radio.id] = e => {
-          if (e.target.value !== "on") {
+          if (e.target.value !== 'on') {
             handler(e.target.value);
           }
         };
-        radio.addEventListener("change", callbacks[radio.id], true);
+        radio.addEventListener('change', callbacks[radio.id], true);
       });
       return () => {
         if (ref.current.length) {
           ref.current.forEach(radio => {
-            radio.removetEventListener("change", callbacks[radio.id], true);
+            radio.removetEventListener('change', callbacks[radio.id], true);
           });
         }
       };
