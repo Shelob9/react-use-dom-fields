@@ -12,7 +12,7 @@ export const useDomRadioGroup = (props: {
     ref.current = document.getElementsByName(name);
     const callbacks = {};
     if (ref.current.length) {
-      ref.current.forEach(radio => {
+      ref.current.forEach((radio: HTMLInputElement) => {
         callbacks[radio.id] = e => {
           if (e.target.value !== 'on') {
             handler(e.target.value);
@@ -32,7 +32,7 @@ export const useDomRadioGroup = (props: {
 
   useEffect(() => {
     if (ref.current && ref.current.length) {
-      ref.current.forEach(radio => {
+      ref.current.forEach((radio: HTMLInputElement) => {
         if (value === radio.value) {
           radio.checked = true;
         }
