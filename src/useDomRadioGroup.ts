@@ -22,8 +22,8 @@ export const useDomRadioGroup = (props: {
       });
       return () => {
         if (ref.current.length) {
-          ref.current.forEach(radio => {
-            radio.removetEventListener('change', callbacks[radio.id], true);
+          ref.current.forEach((radio: HTMLInputElement) => {
+            radio.removeEventListener('change', callbacks[radio.id], true);
           });
         }
       };
