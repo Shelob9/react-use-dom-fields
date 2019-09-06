@@ -58,7 +58,13 @@ function FormSummary() {
 * Run unit tests
   * `yarn test` # Test all once
   * `yarn test --watch -o` #Watch changes
+* Start demo server
+  * `yarn demo`
+* Build demo app for production
+  * `yarn demo:build`
+* Start [Cypress](https://cypress.io) test runner.
+  * Start demo app first! 
+  * `yarn e2e:start`
 * Run e2e tests once for CI
   * `yarn test:e2e` 
-* Start [Cypress](https://cypress.io) test runner.
-  * `yarn e2e:start`
+  * 

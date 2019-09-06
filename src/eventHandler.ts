@@ -1,8 +1,8 @@
-interface EventTarget {
+export interface EventTarget {
   value: any;
 }
 
-interface EventTargetAny {
+export interface EventTargetAny {
   target: EventTarget;
 }
 

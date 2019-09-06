@@ -48116,14 +48116,6 @@ var react_1 = require("react");
 
 var react_use_1 = require("react-use");
 
-function getFieldLabel(idAttr) {
-  return document.querySelectorAll("[for=\"" + idAttr + "\"]")[0].innerHTML;
-}
-
-function isChecked(idAttr) {
-  return document.getElementById(idAttr).checked;
-}
-
 exports.useDomCheckboxGroup = function (props) {
   var name = props.name,
       value = props.value,
@@ -48136,20 +48128,31 @@ exports.useDomCheckboxGroup = function (props) {
         update.push(checkbox.id);
       }
     });
-    console.log(update);
+    handler(update);
   }, [handler, value]); //Bind change handler on mount/ unmount
 
   react_use_1.useEffectOnce(function () {
     ref.current = document.getElementsByName(name);
+    var callbacks = {};
 
     if (ref.current.length) {
       setValues(ref);
       ref.current.forEach(function (checkbox) {
-        checkbox.addEventListener('change', setValues, true);
+        var checkboxId = checkbox.id;
+
+        callbacks[checkboxId] = function () {
+          setValues(ref);
+        };
+
+        checkbox.addEventListener('change', callbacks[checkboxId], true);
       });
     }
   });
   return [ref];
+};
+
+exports.useDomCheckboxGroup.defaultProps = {
+  document: window.document
 };
 },{"react":"../../node_modules/react/index.js","react-use":"../../node_modules/react-use/esm/index.js"}],"../useDomRadioGroup.ts":[function(require,module,exports) {
 "use strict";
@@ -48240,12 +48243,14 @@ function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function mapToJson(map) {
+  console.log(8, map);
   var values = [];
   map.forEach(function (value, key) {
     if (value) {
       values.push(key);
     }
   });
+  console.log(15, values);
   return values.toString();
 }
 /**
@@ -48313,10 +48318,10 @@ function Demo() {
   }, textValue), _react.default.createElement("p", {
     id: "".concat(selectId, "-value")
   }, selectValue), _react.default.createElement("p", {
-    id: "".concat(checkboxGroupName, "-value")
-  }, mapToJson(checkboxState)), _react.default.createElement("p", {
     id: "".concat(radioGroupName, "-value")
-  }, radioValue));
+  }, radioValue), _react.default.createElement("p", {
+    id: "".concat(checkboxGroupName, "-value")
+  }, checkboxState.join(' | ')));
 }
 },{"react":"../../node_modules/react/index.js","./styles.css":"../styles.css","./useDomInput":"../useDomInput.jsx","./useDomSelect":"../useDomSelect.tsx","./useDomCheckboxGroup":"../useDomCheckboxGroup.tsx","./useDomRadioGroup":"../useDomRadioGroup.ts"}],"demo.js":[function(require,module,exports) {
 "use strict";
@@ -48362,7 +48367,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64388" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51964" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

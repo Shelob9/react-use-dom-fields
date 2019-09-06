@@ -5,13 +5,14 @@ import { useDomSelect } from './useDomSelect';
 import { useDomCheckboxGroup } from './useDomCheckboxGroup';
 import { useDomRadioGroup } from './useDomRadioGroup';
 function mapToJson(map) {
+  console.log(8, map);
   const values = [];
   map.forEach((value, key) => {
     if (value) {
       values.push(key);
     }
   });
-
+  console.log(15, values);
   return values.toString();
 }
 
@@ -63,8 +64,8 @@ export default function Demo() {
       <h2>React App</h2>
       <p id={`${inputId}-value`}>{textValue}</p>
       <p id={`${selectId}-value`}>{selectValue}</p>
-      <p id={`${checkboxGroupName}-value`}>{mapToJson(checkboxState)}</p>
       <p id={`${radioGroupName}-value`}>{radioValue}</p>
+      <p id={`${checkboxGroupName}-value`}>{checkboxState.join(' | ')}</p>
     </div>
   );
 }
