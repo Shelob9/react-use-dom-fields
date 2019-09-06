@@ -10,7 +10,7 @@ export const useDomSelect = (props: {
   const { elementId, value, handler } = props;
   const selectRef = useRef(null);
 
-  //Bind change handler on mount/ unmount
+  // Bind change handler on mount/ unmount
   useEffectOnce(() => {
     selectRef.current = document.getElementById(elementId);
     handler(selectRef.current.value);
@@ -21,7 +21,7 @@ export const useDomSelect = (props: {
     };
   });
 
-  //Bind value of input to React state
+  // Bind value of input to React state
   useEffect(() => {
     selectRef.current.value = value;
   }, [value]);

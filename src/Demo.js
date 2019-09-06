@@ -51,7 +51,7 @@ export default function Demo() {
   });
 
   useEffect(() => {
-    if (true === shouldSendStateUpdate) {
+    if (shouldSendStateUpdate === true) {
       setShouldSendStateUpdate(false);
       setTextValue('Text Reset');
       setSelectValue('large');
@@ -64,7 +64,7 @@ export default function Demo() {
     <div className="App">
       <h2>React App</h2>
       <div>
-        <label for="toggle-hide">Reset Field State</label>
+        <label htmlFor="toggle-hide">Reset Field State</label>
         <input
           type="radio"
           id="toggle-hide"

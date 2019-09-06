@@ -7,10 +7,10 @@ import { debounce } from 'debounce';
 export const useDomInput = ({ elementId, value, handler, document }) => {
   const inputRef = useRef(null);
 
-  //Bind change handler on mount/ unmount
+  // Bind change handler on mount/ unmount
   useEffectOnce(() => {
     inputRef.current = document.getElementById(elementId);
-    if (null === inputRef.current) {
+    if (inputRef.current === null) {
       throw new Exception(`Input with ID attribute ${elementId} not found`);
     }
     handler(inputRef.current.value);
@@ -26,7 +26,7 @@ export const useDomInput = ({ elementId, value, handler, document }) => {
     };
   });
 
-  //Bind value of input to React state
+  // Bind value of input to React state
   useEffect(() => {
     inputRef.current.value = value;
   }, [value]);

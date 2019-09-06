@@ -40,10 +40,10 @@ describe('useDomInput component', function() {
       .get('#toggle-hide')
       .check()
       .get('#firstName')
-      //Has updated state?
+      // Has updated state?
       .should('have.value', 'Text Reset')
 
-      //Can we update state from DOM still?
+      // Can we update state from DOM still?
       .clear()
       .type('Crystal Skull')
       .get('#firstName-value')

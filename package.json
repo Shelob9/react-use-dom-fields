@@ -28,7 +28,7 @@
   },
   "scripts": {
     "test": "web-scripts test",
-    "lint": "web-scripts lint",
+    "lint": "web-scripts lint --fix src/",
     "build": "web-scripts build",
     "commit": "web-scripts commit",
     "release": "web-scripts release",

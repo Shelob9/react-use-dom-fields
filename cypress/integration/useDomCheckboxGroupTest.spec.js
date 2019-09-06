@@ -46,14 +46,14 @@ describe('useDomCheckbox component', function() {
       .contains('fruitJuicesApple')
       .contains('fruitJuicesOrange')
 
-      //uncheck apple
+      // uncheck apple
       .get(`#${appleBox}`)
       .uncheck()
       .get(`#${checkboxGroupName}-value`)
       .should('not.contain', 'fruitJuicesApple')
       .contains('fruitJuicesOrange')
 
-      //uncheck orange
+      // uncheck orange
       .get(`#${orangeBox}`)
       .uncheck()
       .get(`#${checkboxGroupName}-value`)

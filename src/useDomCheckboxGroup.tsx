@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import { useRef, useCallback } from 'react';
 import { useEffectOnce } from 'react-use';
-import { eventHandler, EventTarget, EventTargetAny } from './eventHandler';
 
 export const useDomCheckboxGroup = (props: {
   name: string;
@@ -21,10 +20,10 @@ export const useDomCheckboxGroup = (props: {
     },
     [handler, value],
   );
-  //Bind change handler on mount/ unmount
+  // Bind change handler on mount/ unmount
   useEffectOnce(() => {
     ref.current = document.getElementsByName(name);
-    let callbacks: { [index: string]: () => void } = {};
+    const callbacks: { [index: string]: () => void } = {};
 
     if (ref.current.length) {
       setValues(ref);

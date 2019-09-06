@@ -1,7 +1,7 @@
 describe('useDomRadioGroup component', function() {
   const radioGroupName = 'color';
   const red = 'colorRed';
-  const green = 'colorGreen'; //default
+  const green = 'colorGreen'; // default
   const yellow = 'colorYellow';
 
   it('It sets default from DOM', function() {

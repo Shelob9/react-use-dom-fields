@@ -16,7 +16,7 @@ export const useDomRadioGroup = (props: {
     if (ref.current.length) {
       ref.current.forEach(radio => {
         callbacks[radio.id] = e => {
-          if ("on" !== e.target.value) {
+          if (e.target.value !== "on") {
             handler(e.target.value);
           }
         };
