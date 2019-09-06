@@ -1,4 +1,4 @@
-import { eventHandler } from './eventHandler';
+import { eventHandler } from './eventHandler
 
 test('Calls handler', () => {
   const event = { target: { value: 'Descending' } };
@@ -12,4 +12,5 @@ test('Provides correct value to handler', () => {
   const handler = jest.fn();
   eventHandler(event, handler);
   expect(handler).toBeCalledWith('Descending');
+  expect(1).toBe(2);
 });
