@@ -1,4 +1,4 @@
-import { eventHandler } from './eventHandler
+import { eventHandler } from './eventHandler';
 
 test('Calls handler', () => {
   const event = { target: { value: 'Descending' } };

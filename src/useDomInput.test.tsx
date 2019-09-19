@@ -19,7 +19,7 @@ const InputTest = ({ value, onChange, inputId, document }) => {
     {
       'data-testid-': `${inputId}-value`,
     },
-    value,
+    value
   );
 };
 describe('useDomInput', () => {

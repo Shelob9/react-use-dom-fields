@@ -6,7 +6,7 @@ export const useDomCheckboxGroup = (props: {
   value: Array<string>;
   handler: (values: Array<string>) => void;
 }) => {
-  const { name, value, handler } = props;
+  const { name, handler } = props;
   const ref = useRef(null);
   const setValues = useCallback(
     currentRef => {
@@ -18,7 +18,7 @@ export const useDomCheckboxGroup = (props: {
       });
       handler(update);
     },
-    [handler, value],
+    [handler]
   );
   // Bind change handler on mount/ unmount
   useEffectOnce(() => {

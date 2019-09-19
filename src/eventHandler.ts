@@ -8,7 +8,7 @@ export interface EventTargetAny {
 
 export const eventHandler = (
   event: EventTargetAny,
-  handler: (value: string) => void,
+  handler: (value: string) => void
 ) => {
   return handler(event.target.value);
 };

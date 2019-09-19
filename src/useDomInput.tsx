@@ -1,10 +1,16 @@
 import { useRef, useEffect } from 'react';
 import { useEffectOnce } from 'react-use';
 import { eventHandler } from './eventHandler';
-import { Exception } from 'handlebars';
 import { debounce } from 'debounce';
 
-export const useDomInput = ({ elementId, value, handler, document }) => {
+export type useDomInputProps = {
+  elementId: string;
+  value: string;
+  handler: (value: string) => void;
+  document: HTMLDocument;
+};
+
+export const useDomInput = (props: useDomInputProps) => {
   const inputRef = useRef(null);
 
   // Bind change handler on mount/ unmount
@@ -29,7 +35,7 @@ export const useDomInput = ({ elementId, value, handler, document }) => {
   // Bind value of input to React state
   useEffect(() => {
     inputRef.current.value = value;
-  }, [value]);
+  }, []);
 
   return [inputRef];
 };

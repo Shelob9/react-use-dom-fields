@@ -11,35 +11,35 @@
   ],
   "dependencies": {
     "debounce": "^1.2.0",
-    "react-use": "12.2.0"
+    "react-use": "^12.2.0"
   },
   "peerDependencies": {
     "react": ">=16.9",
     "react-dom": ">=16.9"
   },
   "devDependencies": {
-    "@testing-library/react": "^9.1.4",
     "@testing-library/dom": "^6.1.0",
     "@testing-library/jest-dom": "^4.1.0",
-    "cross-env": "^5.2.1",
-    "cypress": "^3.4.1",
-    "parcel-bundler": "^1.12.3",
-    "window": "^4.2.6",
+    "@testing-library/react": "^9.1.4",
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
+    "cross-env": "^5.2.1",
+    "cypress": "^3.4.1",
     "husky": "^3.0.5",
+    "parcel-bundler": "^1.12.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "tsdx": "^0.9.1",
     "tslib": "^1.10.0",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.2",
+    "window": "^4.2.6"
   },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx  test --env=jsdom",
-    "lint": "tsdx lint src fix",
+    "test": "tsdx test src text --fix --env=jsdom",
+    "lint": "tsdx lint",
     "demo": "cross-env NODE_ENV=development parcel src/demo/demo.html",
     "demo:build": "cross-env NODE_ENV=production parcel src/demo/demo.html",
     "e2e:open": "cypress open"

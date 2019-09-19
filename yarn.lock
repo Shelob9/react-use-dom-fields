@@ -7496,7 +7496,7 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "http://localhost:4873/react-is/-/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
   integrity sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
 
-react-use@12.2.0:
+react-use@^12.2.0:
   version "12.2.0"
   resolved "http://localhost:4873/react-use/-/react-use-12.2.0.tgz#9e669ae591f7e3b4b323870e7ff0724f6f69710e"
   integrity sha512-jawCKYQcWDqwA/LMjAEfost6YQnQ6wYtSt1iPWd92Q48OdRAjFqs/GDgZsSzZBl8KsZodJxwr5pCpDn7uxtDZg==
