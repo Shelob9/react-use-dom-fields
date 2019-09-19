@@ -12,5 +12,4 @@ test('Provides correct value to handler', () => {
   const handler = jest.fn();
   eventHandler(event, handler);
   expect(handler).toBeCalledWith('Descending');
-  expect(1).toBe(2);
 });

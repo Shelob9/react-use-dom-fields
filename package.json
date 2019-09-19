@@ -38,7 +38,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test src text --fix --env=jsdom",
+    "test": "tsdx test src test --env=jsdom",
     "lint": "tsdx lint",
     "demo": "cross-env NODE_ENV=development parcel src/demo/demo.html",
     "demo:build": "cross-env NODE_ENV=production parcel src/demo/demo.html",
@@ -46,7 +46,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "tsdx lint test src --fix"
     }
   },
   "prettier": {
