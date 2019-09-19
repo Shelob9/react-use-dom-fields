@@ -7,7 +7,7 @@ export const useDomRadioGroup = (props: {
   handler: EventListener;
 }) => {
   const { name, value, handler } = props;
-  const ref = useRef(null);
+  const ref = useRef<HTMLInputElement>(null);
   useEffectOnce(() => {
     ref.current = document.getElementsByName(name);
     const callbacks = {};

@@ -42,7 +42,8 @@
     "lint": "tsdx lint",
     "demo": "cross-env NODE_ENV=development parcel src/demo/demo.html",
     "demo:build": "cross-env NODE_ENV=production parcel src/demo/demo.html",
-    "e2e:open": "cypress open"
+    "e2e:open": "cypress open",
+    "e2e:ci": "cypress run"
   },
   "husky": {
     "hooks": {

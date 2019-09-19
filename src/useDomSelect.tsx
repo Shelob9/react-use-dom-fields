@@ -8,7 +8,7 @@ export const useDomSelect = (props: {
   handler: (value: string) => void;
 }) => {
   const { elementId, value, handler } = props;
-  const selectRef = useRef(null);
+  const selectRef = useRef<HTMLInputElement>(null);
 
   // Bind change handler on mount/ unmount
   useEffectOnce(() => {

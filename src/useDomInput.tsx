@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useEffectOnce } from 'react-use';
 import { eventHandler } from './eventHandler';
-import { debounce } from 'debounce';
+var debounce = require('debounce');
 
 export type useDomInputProps = {
   elementId: string;
@@ -11,7 +11,8 @@ export type useDomInputProps = {
 };
 
 export const useDomInput = (props: useDomInputProps) => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>();
+  const { elementId, handler } = props;
 
   // Bind change handler on mount/ unmount
   useEffectOnce(() => {
