@@ -46,7 +46,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint test src --fix"
+      "pre-commit": "tsdx lint src --fix"
     }
   },
   "prettier": {
