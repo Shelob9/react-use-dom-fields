@@ -11,14 +11,14 @@ export type useDomInputProps = {
 };
 
 export const useDomInput = (props: useDomInputProps) => {
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLElement | null>(null);
   const { elementId, handler } = props;
 
   // Bind change handler on mount/ unmount
   useEffectOnce(() => {
     inputRef.current = document.getElementById(elementId);
     if (inputRef.current === null) {
-      throw new Exception(`Input with ID attribute ${elementId} not found`);
+      throw new Error(`Input with ID attribute ${elementId} not found`);
     }
     handler(inputRef.current.value);
 
