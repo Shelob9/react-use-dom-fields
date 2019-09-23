@@ -24,7 +24,6 @@ jobs:
           npx wait-on http://localhost:1234/
         env:
           CI: true
-          CYPRESS_INSTALL_BINARY: 1
       - name: Run Cypress
         run: |
           yarn test:e2e
