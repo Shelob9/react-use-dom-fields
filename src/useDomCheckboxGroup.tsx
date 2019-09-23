@@ -7,7 +7,7 @@ export const useDomCheckboxGroup = (props: {
   handler: (values: Array<string>) => void;
 }) => {
   const { name, handler } = props;
-  const ref = useRef<HTMLInputElement | null>(null);
+  const ref = useRef<NodeListOf<HTMLElement> | null>(null);
   const setValues = useCallback(
     currentRef => {
       const update: Array<string> = [];
@@ -22,10 +22,11 @@ export const useDomCheckboxGroup = (props: {
   );
   // Bind change handler on mount/ unmount
   useEffectOnce(() => {
-    ref.current = document.getElementsByName(name);
+    const group: NodeListOf<HTMLElement> = document.getElementsByName(name);
+    ref.current = group;
     const callbacks: { [index: string]: () => void } = {};
 
-    if (ref.current.length) {
+    if (ref.current && ref.current.length) {
       setValues(ref);
       ref.current.forEach((checkbox: HTMLInputElement) => {
         const checkboxId: string = checkbox.id;
