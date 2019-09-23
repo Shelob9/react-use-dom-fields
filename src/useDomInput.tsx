@@ -42,7 +42,7 @@ export const useDomInput = (props: useDomInputProps) => {
       return;
     }
     inputRef.current.value = value;
-  }, []);
+  }, [value]);
 
   return [inputRef];
 };

@@ -67,4 +67,3 @@ function FormSummary() {
   * `yarn e2e:start`
 * Run e2e tests once for CI
   * `yarn test:e2e` 
-  * 
