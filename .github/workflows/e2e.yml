@@ -18,15 +18,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: build and start
         run: |
-          npm install
-          npm run build
-          npm run demo
+          yarn install
+          yarn build
+          yarn demo
           npx wait-on http://localhost:1234/
         env:
           CI: true
           CYPRESS_INSTALL_BINARY: 1
       - name: Run Cypress
         run: |
-          npm run test:e2e
+          yarn test:e2e
         env:
           CI: true
