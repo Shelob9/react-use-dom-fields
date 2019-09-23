@@ -1,0 +1,31 @@
+name: Run End to End test using Cypress
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: build and start
+        run: |
+          yarn install
+          yarn build
+          yarn demo
+          npx wait-on http://localhost:1234/
+        env:
+          CI: true
+      - name: Run Cypress
+        run: |
+          yarn test:e2e
+        env:
+          CI: true
