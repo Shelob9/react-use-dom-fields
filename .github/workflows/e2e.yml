@@ -1,9 +1,9 @@
-name: Run End to End test using Cypress
+name: e2e Tests
 
 on: [push]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,7 +21,6 @@ jobs:
           yarn install
           yarn build
           yarn demo
-          npx wait-on http://localhost:1234/
         env:
           CI: true
       - name: Run Cypress
