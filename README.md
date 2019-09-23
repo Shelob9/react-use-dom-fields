@@ -5,6 +5,10 @@ Tracks and controls the state of form fields in native DOM, whose rendering is N
 * [Edit With CodeSandbox](https://github.com/Shelob9/react-use-dom-fields/tree/master/)
 * [Edit With Gitpod](http://gitpod.io#https://github.com/Shelob9/react-use-dom-fields/tree/master/)
 
+![](https://github.com/Shelob9/react-use-dom-fields/workflows/Unit%20Tests/badge.svg)
+![](https://github.com/Shelob9/react-use-dom-fields/workflows/e2e%20Tests/badge.svg)
+
+
 ## Components
 
 - Input fields `useDomInput`
