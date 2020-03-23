@@ -2,12 +2,11 @@
 
 Tracks and controls the state of form fields, in the native DOM, whose rendering is NOT controlled by React.
 
-* [Edit With CodeSandbox](https://github.com/Shelob9/react-use-dom-fields/tree/master/)
-* [Edit With Gitpod](http://gitpod.io#https://github.com/Shelob9/react-use-dom-fields/tree/master/)
+- [Edit With CodeSandbox](https://github.com/Shelob9/react-use-dom-fields/tree/master/)
+- [Edit With Gitpod](http://gitpod.io#https://github.com/Shelob9/react-use-dom-fields/tree/master/)
 
 ![](https://github.com/Shelob9/react-use-dom-fields/workflows/Unit%20Tests/badge.svg)
 ![](https://github.com/Shelob9/react-use-dom-fields/workflows/e2e%20Tests/badge.svg)
-
 
 ## Components
 
@@ -35,11 +34,11 @@ The `useDOMInput` can be used for any type of HTML input. Groups of checkbox and
 
 ```jsx
 function FormSummary() {
-  const [email, setEmail] = useState("Default From React");
+  const [email, setEmail] = useState('Default From React');
   const [emailFieldRef] = useDomInput({
-    elementId: "email",
+    elementId: 'email',
     value: email,
-    handler: setEmail
+    handler: setEmail,
   });
   return (
     <div className="App">
@@ -52,15 +51,15 @@ function FormSummary() {
 
 ## Development
 
-* Run unit tests
-  * `yarn test` # Test all once
-  * `yarn test --watch -o` #Watch changes
-* Start demo server
-  * `yarn demo`
-* Build demo app for production
-  * `yarn demo:build`
-* Start [Cypress](https://cypress.io) test runner.
-  * Start demo app first!
-  * `yarn e2e:start`
-* Run e2e tests once for CI
-  * `yarn test:e2e`
+- Run unit tests
+  - `yarn test` # Test all once
+  - `yarn test --watch -o` #Watch changes
+- Start demo server
+  - `yarn demo`
+- Build demo app for production
+  - `yarn demo:build`
+- Start [Cypress](https://cypress.io) test runner.
+  - Start demo app first!
+  - `yarn e2e:open`
+- Run e2e tests once for CI
+  - `yarn test:e2e`

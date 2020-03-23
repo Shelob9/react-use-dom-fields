@@ -2,6 +2,7 @@
   <header>
     <title>Demo</title>
   </header> 
+
   <div id="root"></div>
   <div id="not-react">
     <h2>Not React</h2>
@@ -52,5 +53,43 @@
       </div>
      
     </div>
+    <div>
+    <h2>Dynamically Added Fields</h2>
+    <button id="dyn-change">Change Dynamic Field</button>
+    <div id="dyn-field">
+        <div>
+            <label for="dyn-1">D1</label>
+            <input id="dyn-1" />
+        </div>
+    </div>
+    
+  </div>
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  
+  <script>
+    const FIELD_TMPL = (id,label,value) => `
+        <div>
+            <label for="${id}">${label}</label>
+            <input id="${id}" value="${value}" />
+        </div>
+    `
+    let values = {
+        one: '',
+        two: 'twenty'
+    }
+    let showFieldOne = true;
+    document.getElementById( 'dyn-change').addEventListener( 'click', function(){
+        if( showFieldOne ){
+            document.getElementById('dyn-field').innerHTML = FIELD_TMPL('dyn-2', 'D Two', values.two);
+        }else{
+            document.getElementById('dyn-field').innerHTML = FIELD_TMPL('dyn-1', 'D One', values.one);
+        }
+        showFieldOne = ! showFieldOne;
+    });
+
+  </script>
     <script src="demo.js"></script>
-    </html>
+</html>

@@ -17,6 +17,8 @@ export default function Demo() {
   const [selectValue, setSelectValue] = useState('large');
   const [checkboxState, setCheckboxState] = useState(['fruitJuicesOrange']);
   const [radioValue, setRadioValue] = useState('green');
+  const [dynamicField1Value, setDynamicField1Value] = useState('');
+  const [dynamicField2Value, setDynamicField2Value] = useState('');
 
   const [shouldSendStateUpdate, setShouldSendStateUpdate] = useToggle(false);
   const selectId = 'size';
@@ -32,6 +34,22 @@ export default function Demo() {
     elementId: inputId,
     value: textValue,
     handler: setTextValue,
+    document,
+  });
+
+  const dynamicField1Id = 'dyn-1';
+  useDomInput({
+    elementId: dynamicField1Id,
+    value: dynamicField1Value,
+    handler: setDynamicField1Value,
+    document,
+  });
+
+  const dynamicField2Id = 'dyn-2';
+  useDomInput({
+    elementId: dynamicField2Id,
+    value: dynamicField2Value,
+    handler: setDynamicField2Value,
     document,
   });
 
@@ -76,6 +94,8 @@ export default function Demo() {
       <p id={`${selectId}-value`}>{selectValue}</p>
       <p id={`${radioGroupName}-value`}>{radioValue}</p>
       <p id={`${checkboxGroupName}-value`}>{checkboxState.join(' | ')}</p>
+      <p>D1: {dynamicField1Value}</p>
+      <p>D2: {dynamicField2Value}</p>
     </div>
   );
 }
