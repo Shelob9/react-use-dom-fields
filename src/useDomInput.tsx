@@ -1,6 +1,7 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useEffectOnce } from 'react-use';
 import { eventHandler, EventTargetAny } from './eventHandler';
+import useObserveExistance from './useObserveExistance';
 const debounce = require('debounce');
 
 export type useDomInputProps = {
@@ -12,28 +13,23 @@ export type useDomInputProps = {
 
 export const useDomInput = (props: useDomInputProps) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const { addListener } = useObserveExistance();
+
   const { elementId, handler, value } = props;
 
   // Bind change handler on mount/ unmount
   useEffectOnce(() => {
-    inputRef.current = document.getElementById(elementId) as HTMLInputElement;
-    if (inputRef.current === null) {
-      throw new Error(`Input with ID attribute ${elementId} not found`);
-    }
-    handler(inputRef.current.value);
+    addListener(`#${elementId}`, () => {
+      inputRef.current = document.getElementById(elementId) as HTMLInputElement;
+      if (inputRef.current !== null) {
+        handler(inputRef.current.value);
+        const callback = debounce((e: EventTargetAny) => {
+          eventHandler(e, handler);
+        }, 200);
 
-    const callback = debounce((e: EventTargetAny) => {
-      eventHandler(e, handler);
-    }, 200);
-
-    inputRef.current.addEventListener('keypress', callback, true);
-
-    return () => {
-      if (!inputRef.current) {
-        return;
+        inputRef.current.addEventListener('keypress', callback, true);
       }
-      inputRef.current.removeEventListener('keypress', callback, true);
-    };
+    });
   });
 
   // Bind value of input to React state

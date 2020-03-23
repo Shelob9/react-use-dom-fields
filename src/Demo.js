@@ -94,8 +94,12 @@ export default function Demo() {
       <p id={`${selectId}-value`}>{selectValue}</p>
       <p id={`${radioGroupName}-value`}>{radioValue}</p>
       <p id={`${checkboxGroupName}-value`}>{checkboxState.join(' | ')}</p>
-      <p>D1: {dynamicField1Value}</p>
-      <p>D2: {dynamicField2Value}</p>
+      <p>
+        D1: <span id="dyn-1-value">{dynamicField1Value}</span>
+      </p>
+      <p>
+        D2: <span id="dyn-2-value">{dynamicField2Value}</span>
+      </p>
     </div>
   );
 }
